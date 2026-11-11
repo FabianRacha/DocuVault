@@ -5,17 +5,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Class DokumenManager - mengelola operasi CRUD, pencarian, filter, dan baca PDF.
- * ENCAPSULATION: daftar dokumen disembunyikan (private), tidak bisa diubah
- * langsung dari luar; hanya lewat method milik class ini.
- */
 public class DokumenManager {
 
     private final ArrayList<Dokumen> daftar = new ArrayList<>();
     private int idBerikutnya = 1;
 
-    // 1. Tambah Dokumen (Create)
     public Dokumen tambah(String nama, String nomor, LocalDate tanggal,
                           String kategori, String deskripsi, String filePdf) {
         Dokumen d = new Dokumen(idBerikutnya++, nama, nomor, tanggal, kategori, deskripsi, filePdf);
@@ -23,7 +17,6 @@ public class DokumenManager {
         return d;
     }
 
-    // 2. Lihat Daftar Dokumen (Read) - mengembalikan salinan agar list asli aman
     public List<Dokumen> lihatSemua() {
         return new ArrayList<>(daftar);
     }
@@ -35,7 +28,6 @@ public class DokumenManager {
         return null;
     }
 
-    // 3. Edit Dokumen (Update) - lewat setter, jadi validasi tetap jalan
     public boolean edit(int id, String nama, String nomor, LocalDate tanggal,
                         String kategori, String deskripsi, String filePdf) {
         Dokumen d = cariById(id);
@@ -49,13 +41,11 @@ public class DokumenManager {
         return true;
     }
 
-    // 4. Hapus Dokumen (Delete)
     public boolean hapus(int id) {
         Dokumen d = cariById(id);
         return d != null && daftar.remove(d);
     }
 
-    // 5. Baca Dokumen (PDF Viewer) - membuka PDF dengan aplikasi bawaan sistem
     public String baca(int id) {
         Dokumen d = cariById(id);
         if (d == null) return "Dokumen tidak ditemukan.";
@@ -69,7 +59,6 @@ public class DokumenManager {
         }
     }
 
-    // 6. Pencarian berdasarkan nama atau nomor dokumen
     public List<Dokumen> cari(String kataKunci) {
         List<Dokumen> hasil = new ArrayList<>();
         String k = kataKunci.toLowerCase();
@@ -82,7 +71,6 @@ public class DokumenManager {
         return hasil;
     }
 
-    // 7. Filter berdasarkan kategori
     public List<Dokumen> filterKategori(String kategori) {
         List<Dokumen> hasil = new ArrayList<>();
         for (Dokumen d : daftar) {

@@ -5,10 +5,6 @@ import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- * DocuVault - Sistem Pengelolaan Dokumen Legal & Arsip Digital (versi Java console).
- * Nama : Muhamad Fabian Rachadityo | NPM : 50423820 | Kelas : 4IA23
- */
 public class Main {
 
     private static final Scanner in = new Scanner(System.in);

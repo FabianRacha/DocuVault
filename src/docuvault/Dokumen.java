@@ -2,13 +2,8 @@ package docuvault;
 
 import java.time.LocalDate;
 
-/**
- * Class Dokumen - merepresentasikan satu arsip pada aplikasi DocuVault.
- * ENCAPSULATION: semua attribute bersifat PRIVATE, diakses lewat getter/setter.
- */
 public class Dokumen {
 
-    // ===== Attribute (private -> hanya bisa diakses class ini) =====
     private int id;
     private String namaDokumen;
     private String nomorDokumen;
@@ -17,11 +12,9 @@ public class Dokumen {
     private String deskripsi;
     private String filePdf;
 
-    // ===== Constructor =====
     public Dokumen(int id, String namaDokumen, String nomorDokumen,
                    LocalDate tanggal, String kategori, String deskripsi, String filePdf) {
         this.id = id;
-        // memakai setter agar validasi tetap berlaku
         setNamaDokumen(namaDokumen);
         setNomorDokumen(nomorDokumen);
         setTanggal(tanggal);
@@ -30,7 +23,6 @@ public class Dokumen {
         setFilePdf(filePdf);
     }
 
-    // ===== Getter =====
     public int getId()               { return id; }
     public String getNamaDokumen()   { return namaDokumen; }
     public String getNomorDokumen()  { return nomorDokumen; }
@@ -39,7 +31,6 @@ public class Dokumen {
     public String getDeskripsi()     { return deskripsi; }
     public String getFilePdf()       { return filePdf; }
 
-    // ===== Setter (dengan validasi) =====
     public void setNamaDokumen(String namaDokumen) {
         if (namaDokumen == null || namaDokumen.trim().isEmpty()) {
             throw new IllegalArgumentException("Nama dokumen tidak boleh kosong!");
@@ -72,7 +63,6 @@ public class Dokumen {
         this.deskripsi = (deskripsi == null) ? "" : deskripsi.trim();
     }
 
-    // Kebutuhan "Manajemen File PDF": hanya menerima file berekstensi .pdf
     public void setFilePdf(String filePdf) {
         if (filePdf == null || !filePdf.trim().toLowerCase().endsWith(".pdf")) {
             throw new IllegalArgumentException("Format file tidak sesuai, hanya .pdf yang diizinkan!");
